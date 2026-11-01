@@ -128,9 +128,9 @@ function cardHtml(e) {
     '<p class="location">' + esc(e.location) + '</p>' +
 
     '<div class="specs">' +
-      '<span class="spec-item">🛏️ ' + e.beds + ' Beds</span>' +
-      '<span class="spec-item">🛁 ' + e.baths + ' Baths</span>' +
-      '<span class="spec-item">📐 ' + e.sqft.toLocaleString('en-US') + ' sqft</span>' +
+      '<span class="spec-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18v8H3zM5 12V7h6v5M3 16h18M5 20v2M19 20v2"/></svg><span>' + e.beds + ' Beds</span></span>' +
+      '<span class="spec-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12V5a2 2 0 0 1 4 0v7M4 9h4M4 12h16v5a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3zM7 20v2M17 20v2"/></svg><span>' + e.baths + ' Baths</span></span>' +
+      '<span class="spec-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg><span>' + e.sqft.toLocaleString('en-US') + ' sqft</span></span>' +
     '</div>' +
 
     '<p class="estate-meta"><span class="type-tag">' +
