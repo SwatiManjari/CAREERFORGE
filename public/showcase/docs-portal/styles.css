@@ -189,6 +189,56 @@ body {
   scroll-margin-top: 24px;
 }
 
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.breadcrumbs a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover { text-decoration: underline; }
+
+.content h2, .content h3 { scroll-margin-top: 24px; }
+
+.heading-anchor {
+  display: inline-block;
+  margin-left: 9px;
+  color: var(--accent);
+  font-size: 0.85em;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.content h2:hover .heading-anchor,
+.content h3:hover .heading-anchor,
+.heading-anchor:focus-visible { opacity: 1; }
+
+.copy-link-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 10px 16px;
+  border: 1px solid var(--border-focus);
+  border-radius: 8px;
+  background: var(--sidebar);
+  color: var(--text);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+
+.copy-link-toast.visible { opacity: 1; transform: translateY(0); }
+
 .content h2 {
   font-size: 1.5rem;
   font-weight: 700;

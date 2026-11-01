@@ -13,6 +13,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.doc-nav a');
   const sections = document.querySelectorAll('.doc-section');
 
+  // Add shareable anchors to article section headings.
+  if (article) {
+    const toast = document.createElement('div');
+    toast.className = 'copy-link-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+
+    article.querySelectorAll('h2, h3').forEach((heading) => {
+      if (!heading.id) {
+        heading.id = heading.textContent.trim().toLocaleLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '');
+      }
+      const link = document.createElement('a');
+      link.className = 'heading-anchor';
+      link.href = `#${heading.id}`;
+      link.textContent = '#';
+      link.setAttribute('aria-label', `Copy link to ${heading.textContent.trim()}`);
+      link.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
+        try {
+          await navigator.clipboard.writeText(url);
+          toast.textContent = 'Section link copied';
+        } catch {
+          window.location.hash = heading.id;
+          toast.textContent = 'Section link opened';
+        }
+        toast.classList.add('visible');
+        window.setTimeout(() => toast.classList.remove('visible'), 1800);
+      });
+      heading.appendChild(link);
+    });
+  }
+
   // 1. Calculate Estimated Read Time
   function calculateReadTime() {
     if (!article || !readTimeBadge) return;
