@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaseStudyDrawer();
   initEstimator();
   initReviewModal();
+  initFaqAccordion();
 });
 
 // ---------------------------------------------------------------
@@ -1040,4 +1041,38 @@ function initReviewModal() {
 
   // Load existing reviews on page load
   renderSavedReviews();
+/* =========================================
+   CLIENT FAQ ACCORDION
+   ======================================= */
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  if (!faqItems.length) return;
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    if (!question || !answer) return;
+
+    question.addEventListener('click', () => {
+      const isCurrentlyOpen =
+        question.getAttribute('aria-expanded') === 'true';
+
+      faqItems.forEach(faqItem => {
+        const faqQuestion = faqItem.querySelector('.faq-question');
+        const faqAnswer = faqItem.querySelector('.faq-answer');
+
+        faqItem.classList.remove('active');
+        faqQuestion.setAttribute('aria-expanded', 'false');
+        faqAnswer.hidden = true;
+      });
+
+      if (!isCurrentlyOpen) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
+      }
+    });
+  });
 }
